@@ -1,2 +1,2 @@
 # springchatmysqllocalhost
-#demo : http://137.116.137.101:8080/
+#demo : https://dttr278.github.io/webchat1client/chat.html
