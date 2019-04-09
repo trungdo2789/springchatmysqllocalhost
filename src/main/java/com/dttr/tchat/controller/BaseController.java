@@ -102,9 +102,6 @@ public class BaseController {
 
 		return new ResponseEntity<String>(result, httpStatus);
 	}
-	@GetMapping(value="google7f1a09f2dd261292.html")
-	public String getMethodName() {
-		return "google7f1a09f2dd261292";
-	}
+
 	
 }

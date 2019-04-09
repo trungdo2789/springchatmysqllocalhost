@@ -14,8 +14,8 @@ import com.dttr.tchat.model.WebsocketMessage;
 import com.dttr.tchat.service.FileStorageService;
 import com.dttr.tchat.service.JwtService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ import com.dttr.tchat.model.UserToGroup;;
 @RestController
 @RequestMapping("/rest")
 public class UserRestController {
-	private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
+	// private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 	@Autowired
 	private FileStorageService fileStorageService;
 	@Autowired

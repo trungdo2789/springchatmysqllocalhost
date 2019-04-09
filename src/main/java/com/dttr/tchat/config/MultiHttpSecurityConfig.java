@@ -83,20 +83,12 @@ public class MultiHttpSecurityConfig {
 			http.authorizeRequests()
 						.antMatchers("/register").permitAll()
 						.antMatchers("/").authenticated()
-						.antMatchers("/admin").hasRole("ADMIN")
-						.antMatchers("/home").authenticated()
 					.and()
 						.formLogin()
 						.loginPage("/login")
 						.usernameParameter("username").passwordParameter("password")
 						.defaultSuccessUrl("/")
 						.failureUrl("/login?error");
-					// .and()
-					// 	.logout()
-					// 	.logoutUrl("/j_spring_logout")
-					// 	.invalidateHttpSession(true)
-					// 	.deleteCookies("JSESSIONID")
-					// 	.logoutSuccessUrl("/");
 		}
 	}
 }
