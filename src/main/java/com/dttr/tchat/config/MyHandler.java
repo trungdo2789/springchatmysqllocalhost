@@ -111,6 +111,7 @@ public class MyHandler extends TextWebSocketHandler {
 						lw.add(session);
 						usersSession.put(userName, lw);
 					}
+					userinfoHome.online(userinfo);
 				}
 
 				List<Chat> chats = userinfoHome.chats(userinfo);
