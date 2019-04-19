@@ -215,6 +215,15 @@ function cache(ms) {
 	listCacheMessage.push(ms);
 	return true;
 }
+function checkImage(url_image) {
+	var image = new Image();
+	image.src = url_image;
+	if (image.width == 0) {
+		return false;
+	} else {
+		return true;
+	}
+}
 function loadMessages(ms) {
 	var direction;
 	// console.log(ms.sender + '>>' + ms.content);
@@ -224,11 +233,10 @@ function loadMessages(ms) {
 		direction = "sent";
 	}
 	let imageUrl;
-	if (ms.avatarUrl == null) {
-		imageUrl = userImage;
-	} else {
+	imageUrl = userImage;
+	if (ms.avatarUrl != null && checkImage(ms.avatarUrl))
 		imageUrl = ms.avatarUrl;
-	}
+
 	var li = document.createElement('li');
 	li.setAttribute('class', direction);
 	li.setAttribute('id', 'ms-' + ms.messageId);
@@ -276,17 +284,15 @@ function chatOnClick(chat, eventSource) {
 	}
 	$('#contactname')[0].innerText = chat.name;
 	let avatarImage;
-	if (chat.avatarUrl == null) {
-		avatarImage = chat.group ? groupImage : userImage;
-	} else {
+	avatarImage = chat.group ? groupImage : userImage;
+	if (chat.avatarUrl != null && checkImage(chat.avatarUrl))
 		avatarImage = chat.avatarUrl;
-	}
 	$('#contact-image').attr('src', avatarImage);
 	$(".messages").animate({ scrollTop: 9999 }, "fast");
 }
 function loadContact(c) {
 	let status = "", message = "", name = "";
-	if (c.online!=null&&c.online.length > 0) {
+	if (c.online != null && c.online.length > 0) {
 		status = "online";
 	}
 	if (c.lastMessage != null) {
@@ -298,15 +304,9 @@ function loadContact(c) {
 		name = c.name;
 	}
 	let imageUrl;
-	if (c.avatarUrl == null) {
-		if (c.group) {
-			imageUrl = groupImage;
-		} else {
-			imageUrl = userImage;
-		}
-	} else {
+	imageUrl = c.group ? groupImage : userImage;
+	if (c.avatarUrl != null && checkImage(c.avatarUrl))
 		imageUrl = c.avatarUrl;
-	}
 	var li = document.createElement('li');
 	li.setAttribute('class', 'contact');
 	li.setAttribute('id', 'c-' + c.chatId);
@@ -349,7 +349,7 @@ function loadProfile() {
 		user = data;
 		// console.log(username);
 		$('#profile-name').text(user.username);
-		$('#profile-img').attr('src', data.avatarurl != null ? data.avatarurl : userImage);
+		$('#profile-img').attr('src', data.avatarurl != null && checkImage(data.avatarurl) ? data.avatarurl : userImage);
 	});
 }
 $(document).ready(function () {
