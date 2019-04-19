@@ -215,15 +215,7 @@ function cache(ms) {
 	listCacheMessage.push(ms);
 	return true;
 }
-function checkImage(url_image) {
-	var image = new Image();
-	image.src = url_image;
-	if (image.width == 0) {
-		return false;
-	} else {
-		return true;
-	}
-}
+
 function loadMessages(ms) {
 	var direction;
 	// console.log(ms.sender + '>>' + ms.content);
@@ -234,7 +226,7 @@ function loadMessages(ms) {
 	}
 	let imageUrl;
 	imageUrl = userImage;
-	if (ms.avatarUrl != null && checkImage(ms.avatarUrl))
+	if (ms.avatarUrl != null)
 		imageUrl = ms.avatarUrl;
 
 	var li = document.createElement('li');
@@ -285,7 +277,7 @@ function chatOnClick(chat, eventSource) {
 	$('#contactname')[0].innerText = chat.name;
 	let avatarImage;
 	avatarImage = chat.group ? groupImage : userImage;
-	if (chat.avatarUrl != null && checkImage(chat.avatarUrl))
+	if (chat.avatarUrl != null)
 		avatarImage = chat.avatarUrl;
 	$('#contact-image').attr('src', avatarImage);
 	$(".messages").animate({ scrollTop: 9999 }, "fast");
@@ -305,7 +297,7 @@ function loadContact(c) {
 	}
 	let imageUrl;
 	imageUrl = c.group ? groupImage : userImage;
-	if (c.avatarUrl != null && checkImage(c.avatarUrl))
+	if (c.avatarUrl != null)
 		imageUrl = c.avatarUrl;
 	var li = document.createElement('li');
 	li.setAttribute('class', 'contact');
@@ -349,7 +341,7 @@ function loadProfile() {
 		user = data;
 		// console.log(username);
 		$('#profile-name').text(user.username);
-		$('#profile-img').attr('src', data.avatarurl != null && checkImage(data.avatarurl) ? data.avatarurl : userImage);
+		$('#profile-img').attr('src', data.avatarurl != null ? data.avatarurl : userImage);
 	});
 }
 $(document).ready(function () {
