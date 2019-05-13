@@ -9,8 +9,6 @@ var host = location.hostname + (location.port ? ':' + location.port : '');
 var websocket = new WebSocket("ws://" + host + "/tchat");
 var avatarInputfile = document.querySelector('#avatarinput');
 var onlines = [];
-$('#addmember').hide();
-$('#getmember').hide();
 $('#avatarinput').on('change', changeAvatar);
 $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
